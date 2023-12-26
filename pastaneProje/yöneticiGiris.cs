@@ -33,7 +33,7 @@ namespace pastaneProje
             }
             else
             {
-                MessageBox.Show("Böyle bir yönetici bulunamadı");
+                MessageBox.Show("Böyle bir yönetici bulunamadı tekrar deneyiniz");
             }
             baglanti.Close();
         }

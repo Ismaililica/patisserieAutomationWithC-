@@ -33,6 +33,7 @@ namespace pastaneProje
                 {
                     kullaniciPaneli fr = new kullaniciPaneli();
                     fr.Show();
+                    fr.Text = dr["kullanici_ad"].ToString();
                     this.Hide();
                 }
                 else
@@ -64,6 +65,11 @@ namespace pastaneProje
 
         private void label2_Click(object sender, EventArgs e)
         {
+        }
+
+        private void kullaniciGiris_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -44,19 +44,22 @@
             groupBox2 = new GroupBox();
             dataGridView1 = new DataGridView();
             groupBox3 = new GroupBox();
+            button11 = new Button();
             button3 = new Button();
             button4 = new Button();
-            textBox6 = new TextBox();
+            txtsfiyat = new TextBox();
             label5 = new Label();
-            textBox7 = new TextBox();
+            txtmfiyat = new TextBox();
             label7 = new Label();
-            textBox8 = new TextBox();
+            txtstok = new TextBox();
             label8 = new Label();
-            textBox9 = new TextBox();
+            txturunad = new TextBox();
             label9 = new Label();
-            textBox10 = new TextBox();
+            txturunid = new TextBox();
             label10 = new Label();
             groupBox4 = new GroupBox();
+            comboBox2 = new ComboBox();
+            comboBox1 = new ComboBox();
             groupBox6 = new GroupBox();
             button5 = new Button();
             textBox11 = new TextBox();
@@ -68,9 +71,9 @@
             textBox18 = new TextBox();
             label18 = new Label();
             button6 = new Button();
-            textBox12 = new TextBox();
+            txtmaliyet = new TextBox();
             label12 = new Label();
-            textBox13 = new TextBox();
+            txtmiktar = new TextBox();
             label13 = new Label();
             label14 = new Label();
             label15 = new Label();
@@ -81,8 +84,7 @@
             button9 = new Button();
             button8 = new Button();
             button7 = new Button();
-            comboBox1 = new ComboBox();
-            comboBox2 = new ComboBox();
+            listBox1 = new ListBox();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -124,6 +126,7 @@
             button2.TabIndex = 13;
             button2.Text = "Getir";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // button1
             // 
@@ -237,20 +240,23 @@
             dataGridView1.RowTemplate.Height = 29;
             dataGridView1.Size = new Size(547, 238);
             dataGridView1.TabIndex = 0;
+            dataGridView1.CellClick += dataGridView1_CellClick;
+            dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
             // 
             // groupBox3
             // 
+            groupBox3.Controls.Add(button11);
             groupBox3.Controls.Add(button3);
             groupBox3.Controls.Add(button4);
-            groupBox3.Controls.Add(textBox6);
+            groupBox3.Controls.Add(txtsfiyat);
             groupBox3.Controls.Add(label5);
-            groupBox3.Controls.Add(textBox7);
+            groupBox3.Controls.Add(txtmfiyat);
             groupBox3.Controls.Add(label7);
-            groupBox3.Controls.Add(textBox8);
+            groupBox3.Controls.Add(txtstok);
             groupBox3.Controls.Add(label8);
-            groupBox3.Controls.Add(textBox9);
+            groupBox3.Controls.Add(txturunad);
             groupBox3.Controls.Add(label9);
-            groupBox3.Controls.Add(textBox10);
+            groupBox3.Controls.Add(txturunid);
             groupBox3.Controls.Add(label10);
             groupBox3.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             groupBox3.Location = new Point(349, 12);
@@ -260,6 +266,16 @@
             groupBox3.TabStop = false;
             groupBox3.Text = "Ürün Girişi";
             // 
+            // button11
+            // 
+            button11.Location = new Point(12, 269);
+            button11.Name = "button11";
+            button11.Size = new Size(80, 74);
+            button11.TabIndex = 14;
+            button11.Text = "Sil";
+            button11.UseVisualStyleBackColor = true;
+            button11.Click += button11_Click;
+            // 
             // button3
             // 
             button3.Location = new Point(100, 306);
@@ -268,6 +284,7 @@
             button3.TabIndex = 13;
             button3.Text = "Güncelle";
             button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // button4
             // 
@@ -279,12 +296,12 @@
             button4.UseVisualStyleBackColor = true;
             button4.Click += button4_Click;
             // 
-            // textBox6
+            // txtsfiyat
             // 
-            textBox6.Location = new Point(101, 218);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(180, 38);
-            textBox6.TabIndex = 11;
+            txtsfiyat.Location = new Point(101, 218);
+            txtsfiyat.Name = "txtsfiyat";
+            txtsfiyat.Size = new Size(180, 38);
+            txtsfiyat.TabIndex = 11;
             // 
             // label5
             // 
@@ -295,12 +312,12 @@
             label5.TabIndex = 8;
             label5.Text = "S.Fiyat:";
             // 
-            // textBox7
+            // txtmfiyat
             // 
-            textBox7.Location = new Point(101, 172);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(180, 38);
-            textBox7.TabIndex = 7;
+            txtmfiyat.Location = new Point(101, 172);
+            txtmfiyat.Name = "txtmfiyat";
+            txtmfiyat.Size = new Size(180, 38);
+            txtmfiyat.TabIndex = 7;
             // 
             // label7
             // 
@@ -311,12 +328,12 @@
             label7.TabIndex = 6;
             label7.Text = "M.Fiyat:";
             // 
-            // textBox8
+            // txtstok
             // 
-            textBox8.Location = new Point(101, 126);
-            textBox8.Name = "textBox8";
-            textBox8.Size = new Size(180, 38);
-            textBox8.TabIndex = 5;
+            txtstok.Location = new Point(101, 126);
+            txtstok.Name = "txtstok";
+            txtstok.Size = new Size(180, 38);
+            txtstok.TabIndex = 5;
             // 
             // label8
             // 
@@ -327,12 +344,12 @@
             label8.TabIndex = 4;
             label8.Text = "Stok:";
             // 
-            // textBox9
+            // txturunad
             // 
-            textBox9.Location = new Point(101, 80);
-            textBox9.Name = "textBox9";
-            textBox9.Size = new Size(180, 38);
-            textBox9.TabIndex = 3;
+            txturunad.Location = new Point(101, 80);
+            txturunad.Name = "txturunad";
+            txturunad.Size = new Size(180, 38);
+            txturunad.TabIndex = 3;
             // 
             // label9
             // 
@@ -343,12 +360,12 @@
             label9.TabIndex = 2;
             label9.Text = "Ad:";
             // 
-            // textBox10
+            // txturunid
             // 
-            textBox10.Location = new Point(101, 34);
-            textBox10.Name = "textBox10";
-            textBox10.Size = new Size(180, 38);
-            textBox10.TabIndex = 1;
+            txturunid.Location = new Point(101, 34);
+            txturunid.Name = "txturunid";
+            txturunid.Size = new Size(180, 38);
+            txturunid.TabIndex = 1;
             // 
             // label10
             // 
@@ -365,9 +382,9 @@
             groupBox4.Controls.Add(comboBox1);
             groupBox4.Controls.Add(groupBox6);
             groupBox4.Controls.Add(button6);
-            groupBox4.Controls.Add(textBox12);
+            groupBox4.Controls.Add(txtmaliyet);
             groupBox4.Controls.Add(label12);
-            groupBox4.Controls.Add(textBox13);
+            groupBox4.Controls.Add(txtmiktar);
             groupBox4.Controls.Add(label13);
             groupBox4.Controls.Add(label14);
             groupBox4.Controls.Add(label15);
@@ -378,6 +395,24 @@
             groupBox4.TabIndex = 3;
             groupBox4.TabStop = false;
             groupBox4.Text = "Ürün Oluştur";
+            // 
+            // comboBox2
+            // 
+            comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox2.FormattingEnabled = true;
+            comboBox2.Location = new Point(121, 77);
+            comboBox2.Name = "comboBox2";
+            comboBox2.Size = new Size(180, 39);
+            comboBox2.TabIndex = 14;
+            // 
+            // comboBox1
+            // 
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(121, 35);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(180, 39);
+            comboBox1.TabIndex = 13;
             // 
             // groupBox6
             // 
@@ -479,13 +514,14 @@
             button6.TabIndex = 12;
             button6.Text = "Ekle";
             button6.UseVisualStyleBackColor = true;
+            button6.Click += button6_Click;
             // 
-            // textBox12
+            // txtmaliyet
             // 
-            textBox12.Location = new Point(121, 169);
-            textBox12.Name = "textBox12";
-            textBox12.Size = new Size(180, 38);
-            textBox12.TabIndex = 7;
+            txtmaliyet.Location = new Point(121, 169);
+            txtmaliyet.Name = "txtmaliyet";
+            txtmaliyet.Size = new Size(180, 38);
+            txtmaliyet.TabIndex = 7;
             // 
             // label12
             // 
@@ -496,12 +532,13 @@
             label12.TabIndex = 6;
             label12.Text = "Maliyet";
             // 
-            // textBox13
+            // txtmiktar
             // 
-            textBox13.Location = new Point(122, 124);
-            textBox13.Name = "textBox13";
-            textBox13.Size = new Size(180, 38);
-            textBox13.TabIndex = 5;
+            txtmiktar.Location = new Point(122, 124);
+            txtmiktar.Name = "txtmiktar";
+            txtmiktar.Size = new Size(180, 38);
+            txtmiktar.TabIndex = 5;
+            txtmiktar.TextChanged += txtmiktar_TextChanged;
             // 
             // label13
             // 
@@ -605,21 +642,15 @@
             button7.UseVisualStyleBackColor = true;
             button7.Click += button7_Click;
             // 
-            // comboBox1
+            // listBox1
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(121, 35);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(180, 39);
-            comboBox1.TabIndex = 13;
-            // 
-            // comboBox2
-            // 
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(121, 77);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(180, 39);
-            comboBox2.TabIndex = 14;
+            listBox1.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            listBox1.FormattingEnabled = true;
+            listBox1.ItemHeight = 31;
+            listBox1.Location = new Point(1074, 388);
+            listBox1.Name = "listBox1";
+            listBox1.Size = new Size(280, 252);
+            listBox1.TabIndex = 6;
             // 
             // yöneticiPaneli
             // 
@@ -628,6 +659,7 @@
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(1366, 640);
+            Controls.Add(listBox1);
             Controls.Add(groupBox7);
             Controls.Add(groupBox5);
             Controls.Add(groupBox4);
@@ -673,21 +705,21 @@
         private GroupBox groupBox3;
         private Button button3;
         private Button button4;
-        private TextBox textBox6;
+        private TextBox txtsfiyat;
         private Label label5;
-        private TextBox textBox7;
+        private TextBox txtmfiyat;
         private Label label7;
-        private TextBox textBox8;
+        private TextBox txtstok;
         private Label label8;
-        private TextBox textBox9;
+        private TextBox txturunad;
         private Label label9;
-        private TextBox textBox10;
+        private TextBox txturunid;
         private Label label10;
         private GroupBox groupBox4;
         private Button button6;
-        private TextBox textBox12;
+        private TextBox txtmaliyet;
         private Label label12;
-        private TextBox textBox13;
+        private TextBox txtmiktar;
         private Label label13;
         private Label label14;
         private Label label15;
@@ -710,5 +742,7 @@
         private Button button7;
         private ComboBox comboBox2;
         private ComboBox comboBox1;
+        private ListBox listBox1;
+        private Button button11;
     }
 }

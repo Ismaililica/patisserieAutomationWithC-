@@ -100,6 +100,7 @@
             Controls.Add(label2);
             Name = "kullaniciGiris";
             Text = "kullaniciGiris";
+            Load += kullaniciGiris_Load;
             ResumeLayout(false);
             PerformLayout();
         }
