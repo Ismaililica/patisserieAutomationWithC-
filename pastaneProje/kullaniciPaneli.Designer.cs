@@ -33,6 +33,8 @@
             label1 = new Label();
             label2 = new Label();
             txtfiyat = new TextBox();
+            label3 = new Label();
+            textBox1 = new TextBox();
             SuspendLayout();
             // 
             // button1
@@ -44,12 +46,13 @@
             button1.TabIndex = 0;
             button1.Text = "SİPARİŞ VER";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // comboBox1
             // 
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(130, 17);
+            comboBox1.Location = new Point(154, 101);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(282, 39);
             comboBox1.TabIndex = 1;
@@ -59,17 +62,18 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(12, 20);
+            label1.Location = new Point(50, 106);
             label1.Name = "label1";
             label1.Size = new Size(95, 31);
             label1.TabIndex = 2;
             label1.Text = "Urun İd:";
+            label1.Click += label1_Click;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(40, 115);
+            label2.Location = new Point(78, 183);
             label2.Name = "label2";
             label2.Size = new Size(67, 31);
             label2.TabIndex = 3;
@@ -78,11 +82,30 @@
             // txtfiyat
             // 
             txtfiyat.Enabled = false;
-            txtfiyat.Location = new Point(127, 112);
+            txtfiyat.Location = new Point(151, 181);
             txtfiyat.Name = "txtfiyat";
             txtfiyat.Size = new Size(285, 38);
             txtfiyat.TabIndex = 4;
             txtfiyat.TextChanged += txtfiyat_TextChanged;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.Location = new Point(12, 29);
+            label3.Name = "label3";
+            label3.Size = new Size(133, 31);
+            label3.TabIndex = 5;
+            label3.Text = "Kullanıcı ID:";
+            // 
+            // textBox1
+            // 
+            textBox1.Enabled = false;
+            textBox1.Location = new Point(151, 22);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(285, 38);
+            textBox1.TabIndex = 6;
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // kullaniciPaneli
             // 
@@ -90,6 +113,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.PeachPuff;
             ClientSize = new Size(596, 502);
+            Controls.Add(textBox1);
+            Controls.Add(label3);
             Controls.Add(txtfiyat);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -112,5 +137,7 @@
         private Label label1;
         private Label label2;
         private TextBox txtfiyat;
+        private Label label3;
+        private TextBox textBox1;
     }
 }

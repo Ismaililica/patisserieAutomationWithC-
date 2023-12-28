@@ -18,7 +18,7 @@ namespace pastaneProje
             InitializeComponent();
         }
         NpgsqlConnection baglanti = new NpgsqlConnection("server=localhost; port=5432; Database=dbProjePastane; user Id=postgres; password=159753");
-        
+
         int malzemeKontrol = 0;
 
         void MalzemeListe()
@@ -40,18 +40,74 @@ namespace pastaneProje
             malzemeKontrol = 0;
         }
 
+
         void KasaGoster()
         {
-            NpgsqlDataAdapter da2 = new NpgsqlDataAdapter("SELECT *FROM kasa", baglanti);
+
+            NpgsqlDataAdapter da2 = new NpgsqlDataAdapter("SELECT toplamgelir,toplamgider from pastane where yonetici_id=1", baglanti);
             DataTable dt2 = new DataTable();
             da2.Fill(dt2);
-            dataGridView1.DataSource = dt2;
+            dataGridView3.DataSource = dt2;
         }
-        private void yöneticiPaneli_Load(object sender, EventArgs e)
+                private void yöneticiPaneli_Load(object sender, EventArgs e)
         {
             Urunler();
             Malzemeler();
+            siparissler();
+            
         }
+
+        void siparisler()
+        {
+            try
+            {
+                baglanti.Open();
+
+                using (NpgsqlCommand command = new NpgsqlCommand("GetSiparislerByYoneticiId", baglanti))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    // Parametre ekleyin
+                    command.Parameters.AddWithValue("yoneticiIdParam", 1);
+
+                    using (NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter(command))
+                    {
+                        DataTable dataTable = new DataTable();
+                        dataAdapter.Fill(dataTable);
+
+                        if (dataTable.Rows.Count > 0)
+                        {
+                            // Veri bulundu, DataGridView'e bağla
+                            dataGridView2.DataSource = dataTable;
+                        }
+                        else
+                        {
+                            // Veri bulunamadı
+                            MessageBox.Show("Yönetici ID'si 1 olan sipariş bulunamadı.");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Hata durumunda hatayı göster
+                MessageBox.Show("Hata oluştu: " + ex.Message);
+            }
+            finally
+            {
+                baglanti.Close();
+            }
+        }
+
+        void siparissler()
+        {
+            baglanti.Open();
+            NpgsqlDataAdapter da = new NpgsqlDataAdapter("select *from siparisler", baglanti);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            dataGridView2.DataSource = dt;
+        }
+
         void Malzemeler()
         {
             baglanti.Open();
@@ -157,7 +213,7 @@ namespace pastaneProje
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-      
+
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -196,23 +252,28 @@ namespace pastaneProje
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (malzemeKontrol==0)
+            if (malzemeKontrol == 0)
             {
                 txturunid.Text = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
-                txturunad.Text= dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
-                txtstok.Text= dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
-                txtmfiyat.Text= dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
-                txtsfiyat.Text= dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
+                txturunad.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+                txtstok.Text = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
+                txtmfiyat.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+                txtsfiyat.Text = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
             }
             else
             {
-                textBox1.Text= dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
-                textBox2.Text= dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
-                textBox3.Text= dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
-                textBox4.Text= dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
-                textBox5.Text= dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
+                textBox1.Text = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+                textBox2.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+                textBox3.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+                textBox4.Text = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+                textBox5.Text = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
             }
-            
+
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

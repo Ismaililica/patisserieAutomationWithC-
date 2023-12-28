@@ -34,6 +34,9 @@ namespace pastaneProje
         private void kullaniciPaneli_Load(object sender, EventArgs e)
         {
             Urunler();
+
+
+
         }
 
 
@@ -62,13 +65,55 @@ namespace pastaneProje
 
         }
 
-
+       
 
 
         private void txtfiyat_TextChanged(object sender, EventArgs e)
         {
 
 
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        public int KullaniciId { get; set; }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            baglanti.Open();
+
+            NpgsqlCommand komut = new NpgsqlCommand("insert into siparisler(urun_id,kullanici_id) values(@p1,@p2)", baglanti);
+            komut.Parameters.AddWithValue("@p1", comboBox1.SelectedValue);
+            komut.Parameters.AddWithValue("@p2", KullaniciId);
+            komut.ExecuteNonQuery();
+            MessageBox.Show("Sipariş Verildi");
+            try
+            {
+                // PostgreSQL komutları ve bağlantıları burada
+            }
+            catch (Npgsql.PostgresException ex)
+            {
+                if (ex.SqlState == "P0001") // Özel bir hata durumunu kontrol et
+                {
+                    MessageBox.Show("Kullanıcı üçten fazla sipariş veremez.");
+                }
+                else
+                {
+                    // Diğer hata durumlarını işle
+                    MessageBox.Show("Hata: " + ex.Message);
+                }
+            }
+
+
+
+            baglanti.Close();
         }
     }
 }

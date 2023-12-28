@@ -18,8 +18,10 @@ namespace pastaneProje
             InitializeComponent();
         }
         NpgsqlConnection baglanti = new NpgsqlConnection("server=localhost; port=5432; Database=dbProjePastane; user Id=postgres; password=159753");
+        private int kullaniciId;
         private void button1_Click(object sender, EventArgs e)
         {
+         
             try
             {
                 baglanti.Open();
@@ -34,6 +36,10 @@ namespace pastaneProje
                     kullaniciPaneli fr = new kullaniciPaneli();
                     fr.Show();
                     fr.Text = dr["kullanici_ad"].ToString();
+                    fr.KullaniciId = Convert.ToInt32(dr["kullanici_id"]);
+
+
+
                     this.Hide();
                 }
                 else
@@ -47,7 +53,7 @@ namespace pastaneProje
             }
             finally
             {
-                baglanti.Close(); // Always close the connection, whether an exception occurs or not
+                baglanti.Close(); 
             }
         }
 

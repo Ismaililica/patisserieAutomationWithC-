@@ -58,6 +58,7 @@
             txturunid = new TextBox();
             label10 = new Label();
             groupBox4 = new GroupBox();
+            listBox1 = new ListBox();
             comboBox2 = new ComboBox();
             comboBox1 = new ComboBox();
             groupBox6 = new GroupBox();
@@ -84,7 +85,8 @@
             button9 = new Button();
             button8 = new Button();
             button7 = new Button();
-            listBox1 = new ListBox();
+            groupBox8 = new GroupBox();
+            dataGridView3 = new DataGridView();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -94,6 +96,8 @@
             groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             groupBox7.SuspendLayout();
+            groupBox8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView3).BeginInit();
             SuspendLayout();
             // 
             // groupBox1
@@ -378,6 +382,7 @@
             // 
             // groupBox4
             // 
+            groupBox4.Controls.Add(listBox1);
             groupBox4.Controls.Add(comboBox2);
             groupBox4.Controls.Add(comboBox1);
             groupBox4.Controls.Add(groupBox6);
@@ -395,6 +400,16 @@
             groupBox4.TabIndex = 3;
             groupBox4.TabStop = false;
             groupBox4.Text = "Ürün Oluştur";
+            // 
+            // listBox1
+            // 
+            listBox1.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            listBox1.FormattingEnabled = true;
+            listBox1.ItemHeight = 31;
+            listBox1.Location = new Point(0, 256);
+            listBox1.Name = "listBox1";
+            listBox1.Size = new Size(314, 97);
+            listBox1.TabIndex = 6;
             // 
             // comboBox2
             // 
@@ -508,7 +523,7 @@
             // 
             // button6
             // 
-            button6.Location = new Point(121, 222);
+            button6.Location = new Point(121, 213);
             button6.Name = "button6";
             button6.Size = new Size(181, 37);
             button6.TabIndex = 12;
@@ -611,6 +626,7 @@
             button10.TabIndex = 3;
             button10.Text = "Çıkış";
             button10.UseVisualStyleBackColor = true;
+            button10.Click += button10_Click;
             // 
             // button9
             // 
@@ -642,15 +658,27 @@
             button7.UseVisualStyleBackColor = true;
             button7.Click += button7_Click;
             // 
-            // listBox1
+            // groupBox8
             // 
-            listBox1.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            listBox1.FormattingEnabled = true;
-            listBox1.ItemHeight = 31;
-            listBox1.Location = new Point(1074, 388);
-            listBox1.Name = "listBox1";
-            listBox1.Size = new Size(280, 252);
-            listBox1.TabIndex = 6;
+            groupBox8.Controls.Add(dataGridView3);
+            groupBox8.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            groupBox8.Location = new Point(1077, 386);
+            groupBox8.Name = "groupBox8";
+            groupBox8.Size = new Size(277, 242);
+            groupBox8.TabIndex = 6;
+            groupBox8.TabStop = false;
+            groupBox8.Text = "KASA";
+            // 
+            // dataGridView3
+            // 
+            dataGridView3.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView3.Dock = DockStyle.Fill;
+            dataGridView3.Location = new Point(3, 34);
+            dataGridView3.Name = "dataGridView3";
+            dataGridView3.RowHeadersWidth = 51;
+            dataGridView3.RowTemplate.Height = 29;
+            dataGridView3.Size = new Size(271, 205);
+            dataGridView3.TabIndex = 0;
             // 
             // yöneticiPaneli
             // 
@@ -659,7 +687,7 @@
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(1366, 640);
-            Controls.Add(listBox1);
+            Controls.Add(groupBox8);
             Controls.Add(groupBox7);
             Controls.Add(groupBox5);
             Controls.Add(groupBox4);
@@ -682,6 +710,8 @@
             groupBox5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
             groupBox7.ResumeLayout(false);
+            groupBox8.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView3).EndInit();
             ResumeLayout(false);
         }
 
@@ -744,5 +774,7 @@
         private ComboBox comboBox1;
         private ListBox listBox1;
         private Button button11;
+        private GroupBox groupBox8;
+        private DataGridView dataGridView3;
     }
 }
