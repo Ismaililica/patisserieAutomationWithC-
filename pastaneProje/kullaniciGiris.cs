@@ -21,7 +21,7 @@ namespace pastaneProje
         private int kullaniciId;
         private void button1_Click(object sender, EventArgs e)
         {
-         
+
             try
             {
                 baglanti.Open();
@@ -53,7 +53,7 @@ namespace pastaneProje
             }
             finally
             {
-                baglanti.Close(); 
+                baglanti.Close();
             }
         }
 

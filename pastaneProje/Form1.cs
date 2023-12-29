@@ -25,5 +25,10 @@ namespace pastaneProje
             yöneticiGiris fr = new yöneticiGiris();
             fr.Show();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

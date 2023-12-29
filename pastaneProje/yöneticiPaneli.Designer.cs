@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
-            button2 = new Button();
             button1 = new Button();
             textBox5 = new TextBox();
             label6 = new Label();
@@ -81,6 +80,7 @@
             groupBox5 = new GroupBox();
             dataGridView2 = new DataGridView();
             groupBox7 = new GroupBox();
+            button12 = new Button();
             button10 = new Button();
             button9 = new Button();
             button8 = new Button();
@@ -102,7 +102,6 @@
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(button2);
             groupBox1.Controls.Add(button1);
             groupBox1.Controls.Add(textBox5);
             groupBox1.Controls.Add(label6);
@@ -121,16 +120,6 @@
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Stok Girişi";
-            // 
-            // button2
-            // 
-            button2.Location = new Point(100, 312);
-            button2.Name = "button2";
-            button2.Size = new Size(181, 37);
-            button2.TabIndex = 13;
-            button2.Text = "Getir";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
             // 
             // button1
             // 
@@ -366,6 +355,7 @@
             // 
             // txturunid
             // 
+            txturunid.Enabled = false;
             txturunid.Location = new Point(101, 34);
             txturunid.Name = "txturunid";
             txturunid.Size = new Size(180, 38);
@@ -537,6 +527,7 @@
             txtmaliyet.Name = "txtmaliyet";
             txtmaliyet.Size = new Size(180, 38);
             txtmaliyet.TabIndex = 7;
+            txtmaliyet.TextChanged += txtmaliyet_TextChanged;
             // 
             // label12
             // 
@@ -606,6 +597,7 @@
             // 
             // groupBox7
             // 
+            groupBox7.Controls.Add(button12);
             groupBox7.Controls.Add(button10);
             groupBox7.Controls.Add(button9);
             groupBox7.Controls.Add(button8);
@@ -618,9 +610,19 @@
             groupBox7.TabStop = false;
             groupBox7.Text = "İşlemler";
             // 
+            // button12
+            // 
+            button12.Location = new Point(22, 221);
+            button12.Name = "button12";
+            button12.Size = new Size(280, 39);
+            button12.TabIndex = 4;
+            button12.Text = "Yeniden Başlat";
+            button12.UseVisualStyleBackColor = true;
+            button12.Click += button12_Click;
+            // 
             // button10
             // 
-            button10.Location = new Point(21, 221);
+            button10.Location = new Point(22, 272);
             button10.Name = "button10";
             button10.Size = new Size(280, 39);
             button10.TabIndex = 3;
@@ -722,7 +724,6 @@
         private Label label2;
         private TextBox textBox1;
         private Label label1;
-        private Button button2;
         private Button button1;
         private TextBox textBox5;
         private Label label6;
@@ -776,5 +777,6 @@
         private Button button11;
         private GroupBox groupBox8;
         private DataGridView dataGridView3;
+        private Button button12;
     }
 }

@@ -65,7 +65,7 @@ namespace pastaneProje
 
         }
 
-       
+
 
 
         private void txtfiyat_TextChanged(object sender, EventArgs e)

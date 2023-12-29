@@ -49,55 +49,15 @@ namespace pastaneProje
             da2.Fill(dt2);
             dataGridView3.DataSource = dt2;
         }
-                private void yöneticiPaneli_Load(object sender, EventArgs e)
+        private void yöneticiPaneli_Load(object sender, EventArgs e)
         {
             Urunler();
             Malzemeler();
             siparissler();
-            
+
         }
 
-        void siparisler()
-        {
-            try
-            {
-                baglanti.Open();
 
-                using (NpgsqlCommand command = new NpgsqlCommand("GetSiparislerByYoneticiId", baglanti))
-                {
-                    command.CommandType = CommandType.StoredProcedure;
-
-                    // Parametre ekleyin
-                    command.Parameters.AddWithValue("yoneticiIdParam", 1);
-
-                    using (NpgsqlDataAdapter dataAdapter = new NpgsqlDataAdapter(command))
-                    {
-                        DataTable dataTable = new DataTable();
-                        dataAdapter.Fill(dataTable);
-
-                        if (dataTable.Rows.Count > 0)
-                        {
-                            // Veri bulundu, DataGridView'e bağla
-                            dataGridView2.DataSource = dataTable;
-                        }
-                        else
-                        {
-                            // Veri bulunamadı
-                            MessageBox.Show("Yönetici ID'si 1 olan sipariş bulunamadı.");
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                // Hata durumunda hatayı göster
-                MessageBox.Show("Hata oluştu: " + ex.Message);
-            }
-            finally
-            {
-                baglanti.Close();
-            }
-        }
 
         void siparissler()
         {
@@ -106,6 +66,7 @@ namespace pastaneProje
             DataTable dt = new DataTable();
             da.Fill(dt);
             dataGridView2.DataSource = dt;
+            baglanti.Close();
         }
 
         void Malzemeler()
@@ -170,8 +131,12 @@ namespace pastaneProje
         private void button4_Click(object sender, EventArgs e)
         {
             baglanti.Open();
-            NpgsqlCommand komut = new NpgsqlCommand("insert into urun (urun_ad) values(@p1)", baglanti);
+            NpgsqlCommand komut = new NpgsqlCommand("insert into urun (urun_ad,sfiyat,urunstok,mfiyat) values(@p1,@p2,@p3,@p4)", baglanti);
             komut.Parameters.AddWithValue("@p1", txturunad.Text);
+            komut.Parameters.AddWithValue("@p2", int.Parse(txtsfiyat.Text));
+            komut.Parameters.AddWithValue("@p3", int.Parse(txtstok.Text));
+            komut.Parameters.AddWithValue("@p4", int.Parse(txtmfiyat.Text));
+
             komut.ExecuteNonQuery();
             baglanti.Close();
             MessageBox.Show("Ürün Eklendi");
@@ -199,6 +164,7 @@ namespace pastaneProje
                 txtmiktar.Text = "0";
             }
             baglanti.Open();
+
             NpgsqlCommand komut = new NpgsqlCommand("Select *from malzeme where malzeme_id=@p1", baglanti);
             komut.Parameters.AddWithValue("@p1", comboBox2.SelectedValue);
             NpgsqlDataReader dr = komut.ExecuteReader();
@@ -218,17 +184,41 @@ namespace pastaneProje
 
         private void button3_Click(object sender, EventArgs e)
         {
-            baglanti.Open();
-            NpgsqlCommand komut = new NpgsqlCommand("Update urun set urunstok=@p1,sfiyat=@p2,mfiyat=@p3 where urun_id=@p4", baglanti);
-            komut.Parameters.AddWithValue("@p1", int.Parse(txtstok.Text));
-            komut.Parameters.AddWithValue("@p2", decimal.Parse(txtsfiyat.Text));
-            komut.Parameters.AddWithValue("@p3", decimal.Parse(txtmfiyat.Text));
-            komut.Parameters.AddWithValue("@p4", int.Parse(txturunid.Text));
-            komut.ExecuteNonQuery();
-            baglanti.Close();
-            MessageBox.Show("Ürün Listesi Güncellendi");
-            txtsfiyat.Text = " ";
-            txtstok.Text = " ";
+            try
+            {
+                baglanti.Open();
+
+                NpgsqlCommand komut = new NpgsqlCommand("UPDATE urun SET urunstok=@p1, sfiyat=@p2, mfiyat=@p3 WHERE urun_id=@p4", baglanti);
+
+                // Girişleri kontrol et ve parametre değerlerini atanırken uygun türde dönüşümleri yap
+                if (int.TryParse(txtstok.Text, out int urunstok) &&
+                    int.TryParse(txtsfiyat.Text, out int sfiyat) &&
+                    int.TryParse(txtmfiyat.Text, out int mfiyat) &&
+                    int.TryParse(txturunid.Text, out int urunId))
+                {
+                    komut.Parameters.AddWithValue("@p1", urunstok);
+                    komut.Parameters.AddWithValue("@p2", sfiyat);
+                    komut.Parameters.AddWithValue("@p3", mfiyat);
+                    komut.Parameters.AddWithValue("@p4", urunId);
+
+                    komut.ExecuteNonQuery();
+                    MessageBox.Show("Ürün Listesi Güncellendi");
+                }
+                else
+                {
+                    MessageBox.Show("Giriş değerlerinde hata var. Lütfen doğru formatta giriş yapın.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hata oluştu: " + ex.Message);
+            }
+            finally
+            {
+                baglanti.Close();
+            }
+
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -238,16 +228,32 @@ namespace pastaneProje
 
         private void button11_Click(object sender, EventArgs e)
         {
-            baglanti.Open();
+
+            try
+            {
+                baglanti.Open();
+
+                using (NpgsqlCommand komut = new NpgsqlCommand("urunsilme", baglanti))
+                {
+                    komut.CommandType = CommandType.StoredProcedure;
+
+                    // Parametre ekleyin
+                    komut.Parameters.AddWithValue("@urunIdParam", int.Parse(txturunid.Text));
+
+                    komut.ExecuteNonQuery();
+                    MessageBox.Show("Ürün Silindi!!!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hata oluştu: " + ex.Message);
+            }
+            finally
+            {
+                baglanti.Close();
+            }
 
 
-            NpgsqlCommand komut = new NpgsqlCommand("Delete from  urun where urun_id=@p1", baglanti);
-            komut.Parameters.AddWithValue("@p1", int.Parse(txturunid.Text));
-            komut.ExecuteNonQuery();
-
-
-            baglanti.Close();
-            MessageBox.Show("Ürün Silindi!!!");
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -274,6 +280,16 @@ namespace pastaneProje
         private void button10_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            Application.Restart();
+        }
+
+        private void txtmaliyet_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
