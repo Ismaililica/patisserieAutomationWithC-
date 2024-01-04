@@ -696,7 +696,9 @@
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
+            MaximizeBox = false;
             Name = "yöneticiPaneli";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "yöneticiPaneli";
             Load += yöneticiPaneli_Load;
             groupBox1.ResumeLayout(false);

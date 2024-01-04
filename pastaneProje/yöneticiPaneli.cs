@@ -33,7 +33,7 @@ namespace pastaneProje
         void UrunListesi()
         {
 
-            NpgsqlDataAdapter da2 = new NpgsqlDataAdapter("SELECT *FROM urun", baglanti);
+            NpgsqlDataAdapter da2 = new NpgsqlDataAdapter("SELECT *FROM urun order by urun_id", baglanti);
             DataTable dt2 = new DataTable();
             da2.Fill(dt2);
             dataGridView1.DataSource = dt2;
@@ -53,16 +53,16 @@ namespace pastaneProje
         {
             Urunler();
             Malzemeler();
-            siparissler();
+            siparisler();
 
         }
 
 
 
-        void siparissler()
+        void siparisler()
         {
             baglanti.Open();
-            NpgsqlDataAdapter da = new NpgsqlDataAdapter("select *from siparisler", baglanti);
+            NpgsqlDataAdapter da = new NpgsqlDataAdapter("select siparis_id,kullanici_id,urun_id from siparisler order by siparis_id", baglanti);
             DataTable dt = new DataTable();
             da.Fill(dt);
             dataGridView2.DataSource = dt;
@@ -85,7 +85,7 @@ namespace pastaneProje
         void Urunler()
         {
             baglanti.Open();
-            NpgsqlDataAdapter da = new NpgsqlDataAdapter("select *from urun", baglanti);
+            NpgsqlDataAdapter da = new NpgsqlDataAdapter("select *from urun ", baglanti);
             DataTable dt = new DataTable();
             da.Fill(dt);
             comboBox1.ValueMember = "urun_id";
@@ -93,6 +93,12 @@ namespace pastaneProje
             comboBox1.DataSource = dt;
             baglanti.Close();
         }
+
+
+
+
+
+
 
         private void button7_Click(object sender, EventArgs e)
         {
@@ -228,31 +234,12 @@ namespace pastaneProje
 
         private void button11_Click(object sender, EventArgs e)
         {
-
-            try
-            {
-                baglanti.Open();
-
-                using (NpgsqlCommand komut = new NpgsqlCommand("urunsilme", baglanti))
-                {
-                    komut.CommandType = CommandType.StoredProcedure;
-
-                    // Parametre ekleyin
-                    komut.Parameters.AddWithValue("@urunIdParam", int.Parse(txturunid.Text));
-
-                    komut.ExecuteNonQuery();
-                    MessageBox.Show("Ürün Silindi!!!");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Hata oluştu: " + ex.Message);
-            }
-            finally
-            {
-                baglanti.Close();
-            }
-
+            baglanti.Open();
+            NpgsqlCommand komut = new NpgsqlCommand("Delete from urun where urun_id=@p1", baglanti);
+            komut.Parameters.AddWithValue("@p1", int.Parse(txturunid.Text));
+            komut.ExecuteNonQuery();
+            MessageBox.Show("Ürün Başarıyla Silindi");
+            baglanti.Close();
 
         }
 

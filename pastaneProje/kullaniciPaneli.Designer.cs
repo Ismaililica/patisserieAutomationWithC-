@@ -166,6 +166,7 @@
             Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             ForeColor = Color.Blue;
             Margin = new Padding(5);
+            MaximizeBox = false;
             Name = "kullaniciPaneli";
             Text = "kullaniciPaneli";
             Load += kullaniciPaneli_Load;
