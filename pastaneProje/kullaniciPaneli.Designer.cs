@@ -39,10 +39,15 @@
             pictureBox2 = new PictureBox();
             pictureBox3 = new PictureBox();
             pictureBox4 = new PictureBox();
+            button2 = new Button();
+            textBox2 = new TextBox();
+            dataGridView1 = new DataGridView();
+            label3 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // button1
@@ -100,7 +105,7 @@
             // 
             textBox1.BackColor = Color.PeachPuff;
             textBox1.Enabled = false;
-            textBox1.Location = new Point(515, -30);
+            textBox1.Location = new Point(484, 489);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(19, 38);
             textBox1.TabIndex = 6;
@@ -140,19 +145,60 @@
             // pictureBox4
             // 
             pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
-            pictureBox4.Location = new Point(20, 245);
+            pictureBox4.Location = new Point(18, 245);
             pictureBox4.Name = "pictureBox4";
             pictureBox4.Size = new Size(498, 359);
             pictureBox4.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureBox4.TabIndex = 10;
             pictureBox4.TabStop = false;
             // 
+            // button2
+            // 
+            button2.Location = new Point(573, 189);
+            button2.Name = "button2";
+            button2.Size = new Size(302, 53);
+            button2.TabIndex = 11;
+            button2.Text = "Ürün Ara";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(573, 130);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(302, 38);
+            textBox2.TabIndex = 12;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(573, 265);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.RowTemplate.Height = 29;
+            dataGridView1.Size = new Size(302, 339);
+            dataGridView1.TabIndex = 13;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.Location = new Point(577, 20);
+            label3.Name = "label3";
+            label3.Size = new Size(298, 54);
+            label3.TabIndex = 14;
+            label3.Text = "ÜRÜN ARATMA";
+            // 
             // kullaniciPaneli
             // 
             AutoScaleDimensions = new SizeF(13F, 31F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.PeachPuff;
-            ClientSize = new Size(547, 616);
+            ClientSize = new Size(887, 616);
+            Controls.Add(label3);
+            Controls.Add(dataGridView1);
+            Controls.Add(textBox2);
+            Controls.Add(button2);
             Controls.Add(pictureBox4);
             Controls.Add(pictureBox3);
             Controls.Add(pictureBox2);
@@ -174,6 +220,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -190,5 +237,9 @@
         private PictureBox pictureBox2;
         private PictureBox pictureBox3;
         private PictureBox pictureBox4;
+        private Button button2;
+        private TextBox textBox2;
+        private DataGridView dataGridView1;
+        private Label label3;
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Npgsql;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.ComponentModel.Design.ObjectSelectorEditor;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace pastaneProje
@@ -114,6 +116,37 @@ namespace pastaneProje
 
 
             baglanti.Close();
+        }
+        private void UrunAra(string arananKelime)
+        {
+            try
+            {
+                baglanti.Open();
+
+                using (NpgsqlDataAdapter da = new NpgsqlDataAdapter("SELECT urun_ad,urunstok,sfiyat FROM urun WHERE urun_ad ILIKE @arananKelime", baglanti))
+                {
+                    da.SelectCommand.Parameters.AddWithValue("@arananKelime", "%" + arananKelime + "%");
+
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    dataGridView1.DataSource = dt;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hata: " + ex.Message);
+            }
+            finally
+            {
+                baglanti.Close();
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string arananKelime = textBox2.Text;
+            UrunAra(arananKelime);
         }
     }
 }
